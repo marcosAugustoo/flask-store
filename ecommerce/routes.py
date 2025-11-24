@@ -1,0 +1,12 @@
+from ecommerce import app
+from flask import render_template
+from ecommerce.models import Item
+
+@app.route('/')
+def home():
+    return render_template("home.html", active_page='home')
+
+@app.route('/produtos')
+def product_page():
+    items = Item.query.all()
+    return render_template('product_page.html', items=items, active_page='produtos')
