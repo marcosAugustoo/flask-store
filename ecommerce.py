@@ -19,6 +19,7 @@ class Item(db.Model):
     preco = db.Column(db.Float, nullable=False)
     descricao = db.Column(db.String(255), nullable=False, unique=True)
 
+
 @app.route('/')
 def home():
     return render_template('home.html', active_page='home')
@@ -26,30 +27,13 @@ def home():
 
 @app.route('/produtos')
 def product_page():
-    items = [
-        {
-            'id': 1,
-            'name': 'Celular',
-            'code_bar': '123451',
-            'price': 2000
-        },
-        {
-            'id': 2,
-            'name': 'Notebook',
-            'code_bar': '123452',
-            'price': 3000
-        },
-        {
-            'id': 3,
-            'name': 'Tablet',
-            'code_bar': '123453',
-            'price': 1500
-        },
-        {
-            'id': 4,
-            'name': 'Mouse',
-            'code_bar': '123454',
-            'price': 500
-        }
-    ]
+    items = Item.query.all()
     return render_template('product_page.html', items=items, active_page='produtos')
+
+
+# Criando função de moeda
+def format_currency(value):
+    return f"R$ {value:.2f}".replace(',', 'X').replace(".", ',').replace('X', '.')
+
+
+app.jinja_env.filters['currency'] = format_currency
