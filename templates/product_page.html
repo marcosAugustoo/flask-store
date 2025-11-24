@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Produtos{% endblock %}
+
+{% block navbar_left %}
+    <li class="nav-item">
+        <a class="nav-link {% if active_page=='home' %}''{% endif %}" href="{{ url_for('home') }}">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if active_page=='produtos' %}active{% endif %}" href="{{ url_for('product_page') }}">Produtos</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-center">Produtos</h1>
+    <hr>
+    <p class="text-center">Lista de produtos aparecerá aqui.</p>
+    <table class="table table-striped table-hover table-bordered table-dark">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Cód. Barra</th>
+            <th scope="col">Preço</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.code_bar }}</td>
+                <td>{{ item.price }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block navbar_left %}
+    <li class="nav-item">
+        <a class="nav-link {% if active_page=='home' %}active{% endif %}" aria-current="page"
+           href="{{ url_for('home') }}">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if active_page=='produtos' %}''{% endif %}"
+           href="{{ url_for('product_page') }}">Produtos</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-center">Home</h1>
+    <hr>
+    <p class="text-center">Bem-vindo ao Ecommerce Flask!</p>
+{% endblock %}
