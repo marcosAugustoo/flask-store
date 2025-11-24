@@ -1,7 +1,7 @@
 from ecommerce import app
 from flask import render_template
 from ecommerce.models import Item
-from forms import CadastroForm
+from ecommerce.forms import CadastroForm
 
 
 @app.route('/')

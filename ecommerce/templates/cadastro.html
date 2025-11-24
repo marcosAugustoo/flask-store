@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Formulário de Cadastro
+{% endblock %}
+
+{% block navbar_left %}
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('product_page') }}">Produtos</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <body class="text-center">
+    <div class="container">
+        <img class="mb-4" style="width: 200px;" src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png"
+             alt="user icon login vector">
+        <h1 class="h3 mb-3 fw-normal">Por favor, crie a sua conta</h1>
+        <form method="POST" class="form-register d-grid gap-2 col-6 mx-auto" style="color: darkslategray;">
+            {{ form.usuario.label() }}
+            {{ form.usuario(class="form-control", placeholder="Informe o username") }}
+
+            {{ form.email.label() }}
+            {{ form.email(class="form-control", placeholder="Informe o email") }}
+
+            {{ form.senha1.label() }}
+            {{ form.senha1(class="form-control", placeholder="Digite sua senha") }}
+
+            {{ form.senha2.label() }}
+            {{ form.senha2(class="form-control", placeholder="Confirme sua senha") }}
+
+            <br>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                {{ form.submit(class="btn btn-lg btn-success") }}
+            </div>
+
+            {# register / signin#}
+        </form>
+    </div>
+    </body>
+{% endblock %}
