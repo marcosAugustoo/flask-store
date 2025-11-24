@@ -1,11 +1,13 @@
+from os import urandom
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 # Inicializa a aplicação
 app = Flask(__name__)
 
-# Configurações
-# app.config['SECRET_KEY'] = 'sua_chave_secreta_aqui'
+# Configs
+app.config['SECRET_KEY'] = '5c11802192033b2de5e700f23183cea2b69a6c87cd43'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ecommerce.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -13,7 +15,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
-#
 def format_currency(value):
     return f"R$ {value:,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.')
 
