@@ -22,15 +22,17 @@
             <th scope="col">Nome</th>
             <th scope="col">Cód. Barra</th>
             <th scope="col">Preço</th>
+            <th scope="col">Descrição</th>
         </tr>
         </thead>
         <tbody>
         {% for item in items %}
             <tr>
                 <td>{{ item.id }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.code_bar }}</td>
-                <td>{{ item.price }}</td>
+                <td>{{ item.nome }}</td>
+                <td>{{ item.codigo_barras }}</td>
+                <td>{{ item.preco | currency }}</td>
+                <td>{{ item.descricao }}</td>
             </tr>
         {% endfor %}
         </tbody>
