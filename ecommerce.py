@@ -33,7 +33,7 @@ def product_page():
 
 # Criando função de moeda
 def format_currency(value):
-    return f"R$ {value:.2f}".replace(',', 'X').replace(".", ',').replace('X', '.')
+    return f"R$ {value:,.2f}".replace(',', 'X').replace(".", ',').replace('X', '.')
 
 
 app.jinja_env.filters['currency'] = format_currency
