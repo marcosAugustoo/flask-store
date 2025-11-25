@@ -20,6 +20,8 @@
              alt="user icon login vector">
         <h1 class="h3 mb-3 fw-normal">Por favor, crie a sua conta</h1>
         <form method="POST" class="form-register d-grid gap-2 col-6 mx-auto" style="color: darkslategray;">
+            {{ form.hidden_tag() }}
+
             {{ form.usuario.label() }}
             {{ form.usuario(class="form-control", placeholder="Informe o username") }}
 
