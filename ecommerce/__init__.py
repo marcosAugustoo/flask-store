@@ -1,5 +1,5 @@
 from os import urandom
-
+from flask_bcrypt import Bcrypt
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -10,6 +10,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '5c11802192033b2de5e700f23183cea2b69a6c87cd43'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ecommerce.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+bcrypt = Bcrypt(app)
 
 # Inicializa o banco de dados
 db = SQLAlchemy(app)
