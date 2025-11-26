@@ -18,9 +18,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-
         <a class="navbar-brand" href="{{ url_for('page_home') }}">Ecommerce Flask</a>
-
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarLeft" aria-controls="navbarLeft"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +26,6 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarLeft">
-
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 {% block navbar_left %}{% endblock %}
             </ul>
@@ -54,8 +51,6 @@
                     </li>
                 </ul>
             {% endif %}
-
-
         </div>
     </div>
 </nav>
@@ -64,10 +59,7 @@
     {% if messages %}
         {% for category, message in messages %}
             <div class="alert alert-{{ category }} alert-dismissible fade show text-center m-0" role="alert">
-                <button
-                        type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
-                >
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 {{ message }}
             </div>
         {% endfor %}
