@@ -16,6 +16,13 @@ class User(db.Model, UserMixin):
 
     itens = db.relationship('Item', backref='dono_user', lazy=True)
 
+    @property
+    def formataValor(self):
+        if len(str(self.valor)) > 4:
+            return f'R$ {self.valor:,}.00'
+        else:
+            return f'R$ {self.valor:,}'
+
     # Define senha criptografada
     def set_password(self, senha_texto):
         self.senha = bcrypt.generate_password_hash(senha_texto).decode('utf-8')

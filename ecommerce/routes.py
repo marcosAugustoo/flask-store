@@ -2,7 +2,7 @@ from ecommerce import app, db
 from flask import render_template, redirect, url_for, flash
 from ecommerce.models import Item, User
 from ecommerce.forms import CadastroForm, LoginForm
-from flask_login import login_user
+from flask_login import login_user, logout_user
 
 
 @app.route('/')
@@ -57,3 +57,10 @@ def page_login():
             flash('Email ou senha incorretos! Tente novamente.', category='danger')
 
     return render_template('login.html', form=form)
+
+
+@app.route('/logout')
+def page_logout():
+    logout_user()
+    flash('Você saiu do sistema com sucesso!', category='success')
+    return redirect(url_for('page_home'))
