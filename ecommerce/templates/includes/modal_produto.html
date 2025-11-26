@@ -1,5 +1,6 @@
 <!-- ModalInfo -->
-<div class="modal fade" id="exampleModal-{{ item.id }}" tabindex="-1" aria-labelledby="exampleModalLabel-{{ item.id }}" aria-hidden="true">
+<div class="modal fade" id="exampleModal-{{ item.id }}" tabindex="-1" aria-labelledby="exampleModalLabel-{{ item.id }}"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -18,19 +19,25 @@
 </div>
 
 <!-- ModalCompra -->
-<div class="modal fade" id="exampleModalCompra-{{ item.id }}" tabindex="-1" aria-labelledby="exampleModalLabel-{{ item.id }}" aria-hidden="true">
+<div class="modal fade" id="exampleModalCompra-{{ item.id }}" tabindex="-1"
+     aria-labelledby="exampleModalLabel-{{ item.id }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel-{{ item.id }}">{{ item.nome }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                Deseja comprar o produto {{ item.descricao }} por R$ {{ item.preco }}?
+            <div class="modal-body text-center">
+                <form method="POST">
+                    {{ compra_form.hidden_tag() }}
+                    <h4>Deseja comprar o produtos {{ item.descricao }} por R$ {{ item.preco }}</h4><br>
+                    <h6>Clique no botão comprar, para comprar este produto.</h6>
+                    <br>
+                    {{ compra_form.submit(class='btn btn-success btn-block') }}
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fecha</button>
-                <button type="button" class="btn btn-primary">Comprar</button>
             </div>
         </div>
     </div>

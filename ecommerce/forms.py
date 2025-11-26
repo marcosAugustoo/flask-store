@@ -50,3 +50,11 @@ class LoginForm(FlaskForm):
     )
 
     submit = SubmitField(label='Login')
+
+
+class CompraProdutoForm(FlaskForm):
+    submit = SubmitField(label='Comprar Produto')
+
+
+class VendaProdutoForm(FlaskForm):
+    submit = SubmitField(label='Vender Produto')
