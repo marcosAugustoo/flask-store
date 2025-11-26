@@ -2,7 +2,7 @@ from ecommerce import app, db
 from flask import render_template, redirect, url_for, flash
 from ecommerce.models import Item, User
 from ecommerce.forms import CadastroForm, LoginForm
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required
 
 
 @app.route('/')
@@ -11,6 +11,7 @@ def page_home():
 
 
 @app.route('/produtos')
+@login_required
 def page_produto():
     itens = Item.query.all()
     return render_template("product_page.html", itens=itens)

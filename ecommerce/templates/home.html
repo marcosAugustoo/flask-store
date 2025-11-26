@@ -14,7 +14,11 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="text-center">Home</h1>
-    <hr>
-    <p class="text-center">Bem-vindo ao Ecommerce Flask!</p>
+    <div class="py-5">
+        <header class="h-100 p-5 text-white bg-dark text-center justify-content-center align-items-center rounded-5">
+            <h1 class="display-5 fw-bold">Ecommerce Flask</h1>
+            <p class="fs-4">Bem vindo! Para acessar a página de produtos, clique no botão abaixo!</p>
+            <a class="btn btn-success btn-lg" type="button" href="{{ url_for('page_produto') }}">Iniciar</a>
+        </header>
+    </div>
 {% endblock %}
