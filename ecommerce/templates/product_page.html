@@ -4,10 +4,10 @@
 
 {% block navbar_left %}
     <li class="nav-item">
-        <a class="nav-link {% if active_page=='home' %}''{% endif %}" href="{{ url_for('home') }}">Home</a>
+        <a class="nav-link {% if active_page=='home' %}''{% endif %}" href="{{ url_for('page_home') }}">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {% if active_page=='produtos' %}active{% endif %}" href="{{ url_for('product_page') }}">Produtos</a>
+        <a class="nav-link {% if active_page=='produtos' %}active{% endif %}" href="{{ url_for('page_produto') }}">Produtos</a>
     </li>
 {% endblock %}
 

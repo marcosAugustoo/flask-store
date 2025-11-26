@@ -5,11 +5,11 @@
 {% block navbar_left %}
     <li class="nav-item">
         <a class="nav-link {% if active_page=='home' %}active{% endif %}" aria-current="page"
-           href="{{ url_for('home') }}">Home</a>
+           href="{{ url_for('page_home') }}">Home</a>
     </li>
     <li class="nav-item">
         <a class="nav-link {% if active_page=='produtos' %}''{% endif %}"
-           href="{{ url_for('product_page') }}">Produtos</a>
+           href="{{ url_for('page_produto') }}">Produtos</a>
     </li>
 {% endblock %}
 
