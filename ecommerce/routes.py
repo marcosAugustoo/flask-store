@@ -33,7 +33,8 @@ def page_produto():
 
     # ----- GET: exibição dos produtos -----
     itens = Item.query.filter_by(dono=None).all()
-    return render_template("product_page.html", itens=itens, compra_form=compra_form)
+    dono_itens = Item.query.filter_by(dono=current_user.id)
+    return render_template("product_page.html", itens=itens, compra_form=compra_form, dono_itens=dono_itens)
 
 
 
