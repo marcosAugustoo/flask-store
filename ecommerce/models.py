@@ -34,6 +34,9 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"<User {self.usuario}>"
 
+    def compra_disponivel(self, produto_obj):
+        return self.valor >= produto_obj.preco
+
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -46,3 +49,8 @@ class Item(db.Model):
 
     def __repr__(self):
         return f"Item {self.nome}"
+
+    def compra(self, usuario):
+        self.dono = usuario.id
+        usuario.valor -= self.preco
+        db.session.commit()

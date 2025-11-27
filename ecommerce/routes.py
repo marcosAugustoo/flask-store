@@ -15,24 +15,24 @@ def page_home():
 def page_produto():
     compra_form = CompraProdutoForm()
 
+    # ----- POST: tentativa de compra -----
     if request.method == 'POST':
         compra_produto = request.form.get('compra_produto')
-
         produto_obj = Item.query.filter_by(nome=compra_produto).first()
 
-        if produto_obj:  # Agora isso funciona corretamente
-            produto_obj.dono = current_user.id
-            current_user.valor -= produto_obj.preco
-
-            db.session.commit()
-
-            flash(f'Compra efetuada de {produto_obj.nome} com sucesso!', category='success')
+        if produto_obj:
+            if current_user.compra_disponivel(produto_obj):
+                produto_obj.compra(current_user)
+                flash(f'Compra efetuada de {produto_obj.nome} com sucesso!', category='success')
+            else:
+                flash(f'Você não possui saldo suficiente para comprar o produto {produto_obj.nome}', category='danger')
         else:
             flash('Produto não encontrado!', category='danger')
 
         return redirect(url_for('page_produto'))
 
-    itens = Item.query.all()
+    # ----- GET: exibição dos produtos -----
+    itens = Item.query.filter_by(dono=None).all()
     return render_template("product_page.html", itens=itens, compra_form=compra_form)
 
 
