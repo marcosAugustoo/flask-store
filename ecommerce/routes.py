@@ -1,8 +1,8 @@
 from ecommerce import app, db
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, request
 from ecommerce.models import Item, User
 from ecommerce.forms import CadastroForm, LoginForm, CompraProdutoForm, VendaProdutoForm
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 
 
 @app.route('/')
@@ -10,12 +10,31 @@ def page_home():
     return render_template("home.html")
 
 
-@app.route('/produtos')
+@app.route('/produtos', methods=['GET', 'POST'])
 @login_required
 def page_produto():
     compra_form = CompraProdutoForm()
+
+    if request.method == 'POST':
+        compra_produto = request.form.get('compra_produto')
+
+        produto_obj = Item.query.filter_by(nome=compra_produto).first()
+
+        if produto_obj:  # Agora isso funciona corretamente
+            produto_obj.dono = current_user.id
+            current_user.valor -= produto_obj.preco
+
+            db.session.commit()
+
+            flash(f'Compra efetuada de {produto_obj.nome} com sucesso!', category='success')
+        else:
+            flash('Produto não encontrado!', category='danger')
+
+        return redirect(url_for('page_produto'))
+
     itens = Item.query.all()
     return render_template("product_page.html", itens=itens, compra_form=compra_form)
+
 
 
 @app.route('/cadastro', methods=['GET', 'POST'])
