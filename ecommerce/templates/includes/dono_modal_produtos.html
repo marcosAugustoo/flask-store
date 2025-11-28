@@ -13,8 +13,12 @@
                     <h4>Deseja vender o produto {{ dono_item.nome }} por R$ {{ dono_item.preco }}</h4><br>
                     <h6>Clique no botão "Vender Produto", para vender este produto.</h6>
                     <br>
+
                     <input id="venda_produto" name="venda_produto" type="hidden" value="{{ dono_item.nome }}">
-                    {{ venda_form.submit(class='btn btn-danger btn-block') }}
+
+                    <button type="submit" name="venda_submit" class="btn btn-danger btn-block">
+                        Vender Produto
+                    </button>
                 </form>
             </div>
             <div class="modal-footer">
