@@ -14,6 +14,7 @@ def page_home():
 @login_required
 def page_produto():
     compra_form = CompraProdutoForm()
+    venda_form = VendaProdutoForm()
 
     # ----- POST: tentativa de compra -----
     if request.method == 'POST':
@@ -34,8 +35,17 @@ def page_produto():
     # ----- GET: exibição dos produtos -----
     itens = Item.query.filter_by(dono=None).all()
     dono_itens = Item.query.filter_by(dono=current_user.id)
-    return render_template("product_page.html", itens=itens, compra_form=compra_form, dono_itens=dono_itens)
-
+    # Venda Produto
+    venda_produto = request.form.get('venda_produto')
+    produto_obj_venda = Item.query.filter_by(nome=venda_produto).first()
+    if produto_obj_venda:
+        if current_user.venda_disponivel(produto_obj_venda):
+            produto_obj_venda.venda(current_user)
+            flash(f'Venda efetuada de {produto_obj_venda.nome} com sucesso!', category='success')
+        else:
+            flash(f'Algo deu errado com a venda do produto {produto_obj_venda.nome}', category='danger')
+    return render_template("product_page.html", itens=itens, compra_form=compra_form, dono_itens=dono_itens,
+                           venda_form=venda_form)
 
 
 @app.route('/cadastro', methods=['GET', 'POST'])

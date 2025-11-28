@@ -92,6 +92,7 @@
             {% if dono_itens %}
                 <div class="row mt-3">
                     {% for dono_item in dono_itens %}
+                        {% include 'includes/dono_modal_produtos.html' %}
                         <div class="col-md-12 mb-3">
                             <div class="card text-center">
                                 <div class="card-body">
@@ -99,7 +100,7 @@
                                     <p class="card-text">{{ dono_item.descricao }}</p>
                                     <a style="margin-bottom: 10px; margin-top: 10px"
                                        data-bs-toggle="modal"
-                                       data-bs-target="#"
+                                       data-bs-target="#exampleModalVenda-{{ dono_item.id }}"
                                        class="btn btn-danger"
                                        type="button">Vender este produto</a>
                                     <p><strong>Esse produto custa R$ {{ dono_item.preco }}</strong></p>
